@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0e0e0e;
+  color: white;
+}
+
+.navbar {
+  background-color: #111;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 10px red;
+}
+
+.navbar .logo {
+  font-size: 24px;
+  color: red;
+  font-weight: bold;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .nav-links a {
+  text-decoration: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.navbar .nav-links a:hover,
+.navbar .nav-links .active {
+  background-color: red;
+  color: black;
+}
+
+.blog-section {
+  padding: 40px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.blog-card {
+  background-color: #1a1a1a;
+  border: 1px solid red;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.4s ease;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+  position: relative;
+}
+
+.blog-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px red;
+}
+
+/* Popup */
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-content {
+  background: #111;
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 0 20px red;
+}
+
+.popup-content h2 {
+  margin-top: 0;
+  color: red;
+}
+
+.popup-content .close-btn {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: red;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 20px;
+  color: red;
+  text-decoration: underline;
+}

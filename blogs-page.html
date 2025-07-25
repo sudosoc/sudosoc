@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blogs</title>
+  <link rel="stylesheet" href="blogs-page.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">SudoSoc</div>
+    <ul class="nav-links">
+      <li><a href="home-page.html">Home</a></li>
+      <li><a href="about-page.html">About</a></li>
+      <li><a href="scripts-page.html">Scripts</a></li>
+	  <li><a href="blogs-page.html">Blogs</a></li>
+      <li><a href="books-page.html">Books</a></li>
+	  <li><a href="services-page.html">Services</a></li>
+      <li><a href="tools-page.html">Tools</a></li>
+    </ul>
+  </nav>
+
+  <section class="blog-section">
+    <div class="blog-grid">
+      <!-- 8 Blog Cards -->
+      <div class="blog-card" onclick="openPopup(0)">
+        <h3>Blog Title 1</h3>
+        <p>Short Description for Blog 1</p>
+      </div>
+      <div class="blog-card" onclick="openPopup(1)">
+        <h3>Blog Title 2</h3>
+        <p>Short Description for Blog 2</p>
+      </div>
+      <div class="blog-card" onclick="openPopup(2)">
+        <h3>Blog Title 3</h3>
+        <p>Short Description for Blog 3</p>
+      </div>
+      <div class="blog-card" onclick="openPopup(3)">
+        <h3>Blog Title 4</h3>
+        <p>Short Description for Blog 4</p>
+      </div>
+      <div class="blog-card" onclick="openPopup(4)">
+        <h3>Blog Title 5</h3>
+        <p>Short Description for Blog 5</p>
+      </div>
+      <div class="blog-card" onclick="openPopup(5)">
+        <h3>Blog Title 6</h3>
+        <p>Short Description for Blog 6</p>
+      </div>
+      <div class="blog-card" onclick="openPopup(6)">
+        <h3>Blog Title 7</h3>
+        <p>Short Description for Blog 7</p>
+      </div>
+      <div class="blog-card" onclick="openPopup(7)">
+        <h3>Blog Title 8</h3>
+        <p>Short Description for Blog 8</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popup -->
+  <div id="popup" class="popup-container">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2 id="popup-title">Blog Title</h2>
+      <p id="popup-description">Full blog description...</p>
+      <a id="read-more-link" href="#" target="_blank" class="read-more">Read More</a>
+    </div>
+  </div>
+
+  <script src="blogs-page.js"></script>
+</body>
+</html>
