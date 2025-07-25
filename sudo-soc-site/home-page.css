@@ -1,0 +1,153 @@
+ body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Share Tech Mono', monospace;
+      background-color: black;
+      color: red;
+      overflow-x: hidden;
+    }
+
+    .nav-link {
+      color: #ff0000 !important;
+    }
+    .nav-link:hover {
+      color: white !important;
+    }
+
+    .navbar {
+      background-color: #111;
+      border-bottom: 2px solid #ff0000;
+    }
+
+    .hero {
+      background: url('your-background.jpg') center center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      text-shadow: 0 0 10px red;
+      animation: fadeInHero 3s ease-in-out;
+    }
+
+    @keyframes fadeInHero {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    .services-card {
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s;
+      border: 1px solid red;
+      border-radius: 10px;
+      box-shadow: 0 0 20px red;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .services-card img {
+      width: 100%;
+      transition: 0.3s;
+      border-radius: 10px;
+    }
+
+    .services-card .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      color: red;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: 0.3s;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 10px;
+    }
+
+    .services-card:hover .overlay {
+      opacity: 1;
+    }
+
+    .blogs-carousel {
+      overflow: hidden;
+      background-color: #111;
+      padding: 20px 0;
+      border: 2px solid red;
+      border-radius: 10px;
+      box-shadow: 0 0 20px red;
+      transition: 0.3s;
+    }
+
+    .blogs-carousel:hover {
+      box-shadow: 0 0 40px red;
+    }
+
+    .scroll-wrapper {
+      display: flex;
+      gap: 10px;
+      animation: scrollBlogs 30s linear infinite;
+    }
+
+    .blogs-carousel:hover .scroll-wrapper {
+      animation-play-state: paused;
+    }
+
+    .blog-card {
+      flex: 0 0 auto;
+      width: 300px;
+      margin: 10px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid red;
+      color: red;
+      text-align: center;
+      animation: flicker 2s infinite alternate;
+    }
+
+    @keyframes scrollBlogs {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+
+    h2, h1 {
+      text-shadow: 0 0 10px red;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 20px;
+      color: red;
+      padding: 10px;
+      background-color: #111;
+      border-top: 2px solid red;
+    }
+
+    @media (max-width: 768px) {
+      .scroll-wrapper {
+        flex-wrap: nowrap;
+        animation: scrollBlogs 60s linear infinite;
+      }
+
+      .services-card,
+      .blog-card {
+        width: 100% !important;
+      }
+    }
