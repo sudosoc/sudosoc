@@ -1,0 +1,47 @@
+{
+  "name": "sudosoc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
+    "@prisma/client": "^5.6.0",
+    "bcryptjs": "^2.4.3",
+    "date-fns": "^2.30.0",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.292.0",
+    "next": "^14.3.4",
+    "next-auth": "^4.24.5",
+    "prisma": "^5.6.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.47.0",
+    "react-hot-toast": "^2.4.1",
+    "react-modal": "^3.16.1",
+    "react-share": "^4.4.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/react-modal": "^3.16.3",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.3.4",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
