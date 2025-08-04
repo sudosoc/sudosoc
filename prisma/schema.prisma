@@ -1,0 +1,186 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  username      String    @unique
+  bio           String?
+  isAdmin       Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  ratings       Rating[]
+  reports       Report[]
+  scripts       Script[]
+  bookSuggestions BookSuggestion[]
+  maintenanceMode MaintenanceMode[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Tool {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  category    String
+  url         String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  isActive    Boolean  @default(true)
+
+  ratings     Rating[]
+  reports     Report[]
+}
+
+model Script {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  language    String
+  type        String
+  code        String   @db.Text
+  contributorId String?
+  contributor User?    @relation(fields: [contributorId], references: [id])
+  isApproved  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  ratings     Rating[]
+  reports     Report[]
+}
+
+model EBook {
+  id          String   @id @default(cuid())
+  title       String
+  author      String
+  field       String
+  pageCount   Int
+  language    String
+  coverUrl    String?
+  pdfUrl      String
+  contributorId String?
+  contributor User?    @relation(fields: [contributorId], references: [id])
+  isApproved  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  ratings     Rating[]
+  reports     Report[]
+}
+
+model BookSuggestion {
+  id          String   @id @default(cuid())
+  title       String
+  author      String
+  field       String
+  description String
+  submitterId String
+  submitter   User     @relation(fields: [submitterId], references: [id])
+  isApproved  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Journal {
+  id          String   @id @default(cuid())
+  title       String
+  content     String   @db.Text
+  sourceUrl   String?
+  tags        String[]
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Rating {
+  id        String   @id @default(cuid())
+  value     Int
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  toolId    String?
+  tool      Tool?    @relation(fields: [toolId], references: [id])
+  scriptId  String?
+  script    Script?  @relation(fields: [scriptId], references: [id])
+  ebookId   String?
+  ebook     EBook?   @relation(fields: [ebookId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, toolId])
+  @@unique([userId, scriptId])
+  @@unique([userId, ebookId])
+}
+
+model Report {
+  id          String   @id @default(cuid())
+  reason      String
+  description String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  toolId      String?
+  tool        Tool?    @relation(fields: [toolId], references: [id])
+  scriptId    String?
+  script      Script?  @relation(fields: [scriptId], references: [id])
+  ebookId     String?
+  ebook       EBook?   @relation(fields: [ebookId], references: [id])
+  isResolved  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model MaintenanceMode {
+  id        String   @id @default(cuid())
+  isEnabled Boolean  @default(false)
+  message   String?
+  enabledBy String
+  user      User     @relation(fields: [enabledBy], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+} 
