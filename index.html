@@ -1,0 +1,145 @@
+
+'use client'
+
+import Link from 'next/link'
+import { Shield, Code, BookOpen, FileText, Users, Zap } from 'lucide-react'
+import { useAuth } from '@/components/providers/AuthProvider'
+
+export default function Home() {
+  const { user } = useAuth()
+  
+  return (
+    <div className="min-h-screen bg-dark-950">
+      {/* Hero Section */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <span className="neon-glow">SudoSoc</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            The ultimate cybersecurity platform for professionals and enthusiasts.
+            Discover tools, scripts, e-books, and stay updated with the latest security research.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/tools" className="neon-button px-8 py-3 rounded-md text-lg">
+              Explore Tools
+            </Link>
+            <Link href="/scripts" className="bg-red-500 text-white px-8 py-3 rounded-md text-lg hover:bg-red-600 transition-colors">
+              Browse Scripts
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 neon-glow">
+            Platform Features
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-dark-800/50 p-6 rounded-lg border border-red-500/20 card-hover">
+              <div className="flex items-center mb-4">
+                <Zap className="h-8 w-8 text-red-500 mr-3" />
+                <h3 className="text-xl font-semibold">Security Tools</h3>
+              </div>
+              <p className="text-gray-300">
+                Discover and rate the latest cybersecurity tools used by professionals worldwide.
+              </p>
+            </div>
+
+            <div className="bg-dark-800/50 p-6 rounded-lg border border-red-500/20 card-hover">
+              <div className="flex items-center mb-4">
+                <Code className="h-8 w-8 text-red-500 mr-3" />
+                <h3 className="text-xl font-semibold">Scripts Library</h3>
+              </div>
+              <p className="text-gray-300">
+                Access and contribute to a growing collection of security scripts and automation tools.
+              </p>
+            </div>
+
+            <div className="bg-dark-800/50 p-6 rounded-lg border border-red-500/20 card-hover">
+              <div className="flex items-center mb-4">
+                <BookOpen className="h-8 w-8 text-red-500 mr-3" />
+                <h3 className="text-xl font-semibold">E-Books</h3>
+              </div>
+              <p className="text-gray-300">
+                Download free cybersecurity e-books covering various aspects of security research.
+              </p>
+            </div>
+
+            <div className="bg-dark-800/50 p-6 rounded-lg border border-red-500/20 card-hover">
+              <div className="flex items-center mb-4">
+                <FileText className="h-8 w-8 text-red-500 mr-3" />
+                <h3 className="text-xl font-semibold">Security Journal</h3>
+              </div>
+              <p className="text-gray-300">
+                Stay updated with curated CVE reports and security research articles.
+              </p>
+            </div>
+
+            <div className="bg-dark-800/50 p-6 rounded-lg border border-red-500/20 card-hover">
+              <div className="flex items-center mb-4">
+                <Users className="h-8 w-8 text-red-500 mr-3" />
+                <h3 className="text-xl font-semibold">Community</h3>
+              </div>
+              <p className="text-gray-300">
+                Join a community of security professionals and contribute to the platform.
+              </p>
+            </div>
+
+            <div className="bg-dark-800/50 p-6 rounded-lg border border-red-500/20 card-hover">
+              <div className="flex items-center mb-4">
+                <Shield className="h-8 w-8 text-red-500 mr-3" />
+                <h3 className="text-xl font-semibold">Secure & Private</h3>
+              </div>
+              <p className="text-gray-300">
+                Built with security in mind. Your data and contributions are protected.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-dark-900/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-red-500 mb-2">100+</div>
+              <div className="text-gray-300">Security Tools</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-red-500 mb-2">500+</div>
+              <div className="text-gray-300">Scripts</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-red-500 mb-2">50+</div>
+              <div className="text-gray-300">E-Books</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-red-500 mb-2">1000+</div>
+              <div className="text-gray-300">Users</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-dark-900/50 border-t border-red-500/20 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-2 mb-4 md:mb-0">
+              <Shield className="h-6 w-6 text-red-500" />
+              <span className="text-lg font-bold neon-glow">SudoSoc</span>
+            </div>
+            <div className="text-gray-400 text-sm">
+              © 2024 SudoSoc. Built for the cybersecurity community.
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+} 
