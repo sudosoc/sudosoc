@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SudoSoc - Coming Soon</title>
+  <style>
+    body {
+      margin:0;
+      padding:0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background:#000;
+      color:#0f0;
+      overflow: hidden;
+      text-align: center;
+      cursor: none; /* يخلي شكل الموقع أنظف */
+    }
+    canvas {
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      display:block;
+    }
+    .content {
+      position: relative;
+      z-index: 2;
+      padding:80px 20px;
+    }
+    .logo {
+      font-size:3em;
+      font-weight:bold;
+      letter-spacing:2px;
+      color:#0f0;
+      text-shadow:0 0 10px #0f0, 0 0 20px #0f0;
+    }
+    .slogan {
+      font-size:1.5em;
+      color:#bada55;
+      margin:20px 0;
+      text-shadow:0 0 10px #0f0;
+    }
+    .icons {
+      margin-top:40px;
+      display:flex;
+      justify-content:center;
+      gap:40px;
+      flex-wrap:wrap;
+    }
+    .icon-link {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      color:#0f0;
+      text-decoration:none;
+      font-size:1em;
+      transition: transform 0.3s, color 0.3s;
+      text-shadow:0 0 10px #0f0, 0 0 20px #0f0;
+    }
+    .icon-link:hover {
+      transform:scale(1.2);
+      color:#bada55;
+      text-shadow:0 0 20px #bada55,0 0 30px #bada55;
+    }
+    .copyright {
+      margin-top:60px;
+      font-size:0.9em;
+      color:#0f0;
+      text-shadow:0 0 5px #0f0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="network"></canvas>
+  <div class="content">
+    <div class="logo">SudoSoc</div>
+    <p class="slogan">هنا ستجد كل ما تحتاجه لتصبح محترف أمن سيبراني.</p>
+    <div class="icons">
+      <a href="tel:+201000491020" class="icon-link" title="اتصل بنا">
+        📞 <span>اتصل بنا</span>
+      </a>
+      <a href="mailto:sudosoc.seif@gmail.com" class="icon-link" title="راسلنا">
+        ✉️ <span>راسلنا</span>
+      </a>
+      <a href="https://t.me/sudosoc" target="_blank" class="icon-link" title="تليجرام">
+        💬 <span>تليجرام</span>
+      </a>
+      <a href="https://t.me/+n0xnJAQ2Lp85OGJk" target="_blank" class="icon-link" title="قناة التليجرام">
+        📢 <span>قناة التليجرام</span>
+      </a>
+      <a href="https://wa.me/201000491020" target="_blank" class="icon-link" title="واتساب">
+        🟢 <span>واتساب</span>
+      </a>
+    </div>
+    <div class="copyright">
+      © 2025 <strong>SudoSoc</strong> - جميع الحقوق محفوظة
+    </div>
+  </div>
+  <script>
+    const canvas = document.getElementById('network');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const nodes = Array.from({length:100}).map(() => ({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      vx: (Math.random()-0.5)*0.3,
+      vy: (Math.random()-0.5)*0.3
+    }));
+
+    let mouse = { x: null, y: null };
+
+    window.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function draw() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      for(let i=0;i<nodes.length;i++){
+        const n=nodes[i];
+        n.x+=n.vx;
+        n.y+=n.vy;
+        if(n.x<0||n.x>canvas.width) n.vx*=-1;
+        if(n.y<0||n.y>canvas.height) n.vy*=-1;
+
+        ctx.beginPath();
+        ctx.arc(n.x,n.y,1.5,0,2*Math.PI);
+        ctx.fillStyle='#0f0';
+        ctx.fill();
+
+        for(let j=i+1;j<nodes.length;j++){
+          const m=nodes[j];
+          const dx=n.x-m.x;
+          const dy=n.y-m.y;
+          const dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<120){
+            let opacity = 1 - dist/120;
+            if(mouse.x && mouse.y){
+              const mdx = (n.x+ m.x)/2 - mouse.x;
+              const mdy = (n.y+ m.y)/2 - mouse.y;
+              const mdist = Math.sqrt(mdx*mdx + mdy*mdy);
+              if(mdist<150){
+                opacity = 1;
+              }
+            }
+            ctx.strokeStyle=`rgba(0,255,0,${opacity})`;
+            ctx.lineWidth=0.5;
+            ctx.beginPath();
+            ctx.moveTo(n.x,n.y);
+            ctx.lineTo(m.x,m.y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
