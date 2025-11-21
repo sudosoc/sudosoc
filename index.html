@@ -1,164 +1,203 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>sudosoc</title>
-  <style>
-    body {
-      margin:0;
-      padding:0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background:#000;
-      color:#0f0;
-      overflow: hidden;
-      text-align: center;
-      }
-    canvas {
-      position: fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      display:block;
-    }
-    .content {
-      position: relative;
-      z-index: 2;
-      padding:80px 20px;
-    }
-    .logo {
-      font-size:3em;
-      font-weight:bold;
-      letter-spacing:2px;
-      color:#0f0;
-      text-shadow:0 0 10px #0f0, 0 0 20px #0f0;
-    }
-    .slogan {
-      font-size:1.5em;
-      color:#bada55;
-      margin:20px 0;
-      text-shadow:0 0 10px #0f0;
-    }
-    .icons {
-      margin-top:40px;
-      display:flex;
-      justify-content:center;
-      gap:40px;
-      flex-wrap:wrap;
-    }
-    .icon-link {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      color:#0f0;
-      text-decoration:none;
-      font-size:1em;
-      transition: transform 0.3s, color 0.3s;
-      text-shadow:0 0 10px #0f0, 0 0 20px #0f0;
-    }
-    .icon-link:hover {
-      transform:scale(1.2);
-      color:#bada55;
-      text-shadow:0 0 20px #bada55,0 0 30px #bada55;
-    }
-    .copyright {
-      margin-top:60px;
-      font-size:0.9em;
-      color:#0f0;
-      text-shadow:0 0 5px #0f0;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>SUDOSOC — Cyber Defense Toolkit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="main.js"></script>
 </head>
-<body>
-  <canvas id="network"></canvas>
-  <div class="content">
-    <div class="logo">Sudo SOC</div>
-    <p class="slogan"></p>
-    <div class="icons">
-      <a href="tel:+201000491020" class="icon-link" title="اتصل بنا">
-        📞 <span>اتصل بنا</span>
-      </a>
-      <a href="mailto:admin@sudosoc.com" class="icon-link" title="راسلنا">
-        ✉️ <span>راسلنا</span>
-      </a>
-      <a href="https://t.me/sudosoc" target="_blank" class="icon-link" title="تليجرام">
-        💬 <span>تليجرام</span>
-      </a>
-      <a href="https://t.me/+n0xnJAQ2Lp85OGJk" target="_blank" class="icon-link" title="قناة التليجرام">
-        📢 <span>قناة التليجرام</span>
-      </a>
-      <a href="https://wa.me/201000491020" target="_blank" class="icon-link" title="واتساب">
-        🟢 <span>واتساب</span>
-      </a>
+<body class="app-body">
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-mark">S</div>
+      <div>
+        <div class="topbar-title">SUDOSOC</div>
+        <div class="topbar-subtitle">Cyber Defense Toolkit</div>
+      </div>
     </div>
-    <div class="copyright">
-      © 2025 <strong>sudosoc</strong> - جميع الحقوق محفوظة
-    </div>
-  </div>
-  <script>
-    const canvas = document.getElementById('network');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  </header>
 
-    const nodes = Array.from({length:100}).map(() => ({
-      x: Math.random()*canvas.width,
-      y: Math.random()*canvas.height,
-      vx: (Math.random()-0.5)*0.3,
-      vy: (Math.random()-0.5)*0.3
-    }));
+  <main class="main-layout">
 
-    let mouse = { x: null, y: null };
+    <!-- LEFT: categories & tools -->
+    <section class="main-content">
 
-    window.addEventListener('mousemove', e => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
+      <!-- SOC Tools -->
+      <section class="section-card">
+        <h2 class="section-title">🛡 SOC Tools</h2>
+        <p class="section-sub">
+          Tools to support Security Operations Center workflows and email triage.
+        </p>
 
-    function draw() {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      for(let i=0;i<nodes.length;i++){
-        const n=nodes[i];
-        n.x+=n.vx;
-        n.y+=n.vy;
-        if(n.x<0||n.x>canvas.width) n.vx*=-1;
-        if(n.y<0||n.y>canvas.height) n.vy*=-1;
+        <div class="tool-grid">
 
-        ctx.beginPath();
-        ctx.arc(n.x,n.y,1.5,0,2*Math.PI);
-        ctx.fillStyle='#0f0';
-        ctx.fill();
+          <!-- Email Header Analyzer -->
+          <article class="tool-card">
+            <div class="tool-header">
+              <div class="tool-icon neon-red">
+                <svg width="36" height="36" stroke="#ff2a2a" fill="none" stroke-width="2">
+                  <rect x="6" y="6" width="24" height="24" rx="3"/>
+                  <path d="M10 18h16M18 10v16"/>
+                </svg>
+              </div>
+              <h3 class="tool-name">Email Header Analyzer</h3>
+            </div>
+            <p class="tool-desc">
+              Inspect routing, SPF/DKIM/DMARC, domain mismatches and risk indicators
+              from raw email headers — all client-side.
+            </p>
+            <button class="tool-btn" onclick="openTool('email-header.html')">
+              Open Tool
+            </button>
+          </article>
 
-        for(let j=i+1;j<nodes.length;j++){
-          const m=nodes[j];
-          const dx=n.x-m.x;
-          const dy=n.y-m.y;
-          const dist=Math.sqrt(dx*dx+dy*dy);
-          if(dist<120){
-            let opacity = 1 - dist/120;
-            if(mouse.x && mouse.y){
-              const mdx = (n.x+ m.x)/2 - mouse.x;
-              const mdy = (n.y+ m.y)/2 - mouse.y;
-              const mdist = Math.sqrt(mdx*mdx + mdy*mdy);
-              if(mdist<150){
-                opacity = 1;
-              }
-            }
-            ctx.strokeStyle=`rgba(0,255,0,${opacity})`;
-            ctx.lineWidth=0.5;
-            ctx.beginPath();
-            ctx.moveTo(n.x,n.y);
-            ctx.lineTo(m.x,m.y);
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(draw);
-    }
-    draw();
-  </script>
+        </div>
+      </section>
+
+      <!-- Malware & Obfuscation -->
+      <section class="section-card">
+        <h2 class="section-title">🧨 Malware & Obfuscation</h2>
+        <p class="section-sub">
+          Quickly reveal encoded payloads, layers of obfuscation and suspicious patterns.
+        </p>
+
+        <div class="tool-grid">
+
+          <!-- Obfuscation Hunter -->
+          <article class="tool-card">
+            <div class="tool-header">
+              <div class="tool-icon neon-red">
+                <svg width="36" height="36" stroke="#ff2a2a" fill="none" stroke-width="2">
+                  <path d="M5 10h26M10 5v26M10 26l16-12M10 10l16 12"/>
+                </svg>
+              </div>
+              <h3 class="tool-name">Obfuscation Hunter</h3>
+            </div>
+            <p class="tool-desc">
+              Hunt for Base64, hex, URL-encoding and JS obfuscation constructs in suspicious content.
+            </p>
+            <button class="tool-btn" onclick="openTool('obfuscation-hunter.html')">
+              Open Tool
+            </button>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Web Security -->
+      <section class="section-card">
+        <h2 class="section-title">🌐 Web Security</h2>
+        <p class="section-sub">
+          Static URL heuristics to detect redirect tricks and phishing-style links.
+        </p>
+
+        <div class="tool-grid">
+
+          <!-- Redirect Chain Analyzer -->
+          <article class="tool-card">
+            <div class="tool-header">
+              <div class="tool-icon neon-red">
+                <svg width="38" height="38" stroke="#ff2a2a" fill="none" stroke-width="2">
+                  <path d="M8 19h18M18 9l10 10-10 10"/>
+                </svg>
+              </div>
+              <h3 class="tool-name">Redirect Chain Analyzer</h3>
+            </div>
+            <p class="tool-desc">
+              Identify redirect parameters, encoded hops and risky URL patterns —
+              without sending the URL anywhere.
+            </p>
+            <button class="tool-btn" onclick="openTool('redirect-chain.html')">
+              Open Tool
+            </button>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Password & Crypto -->
+      <section class="section-card">
+        <h2 class="section-title">🔐 Password & Crypto</h2>
+        <p class="section-sub">
+          Strong password generation and deep strength analysis for safer credentials.
+        </p>
+
+        <div class="tool-grid">
+
+          <!-- Password Generator -->
+          <article class="tool-card">
+            <div class="tool-header">
+              <div class="tool-icon neon-red">
+                <svg width="38" height="38" stroke="#ff2a2a" fill="none" stroke-width="2">
+                  <circle cx="19" cy="19" r="7"/>
+                  <path d="M19 9v-5M19 34v-5M9 19H4M34 19h-5"/>
+                </svg>
+              </div>
+              <h3 class="tool-name">Password Generator</h3>
+            </div>
+            <p class="tool-desc">
+              Crypto-safe random password generator with custom length and character sets.
+            </p>
+            <button class="tool-btn" onclick="openTool('password-generator.html')">
+              Open Tool
+            </button>
+          </article>
+
+          <!-- Password Strength Analyzer -->
+          <article class="tool-card">
+            <div class="tool-header">
+              <div class="tool-icon neon-red">
+                <svg width="38" height="38" stroke="#ff2a2a" fill="none" stroke-width="2">
+                  <rect x="8" y="16" width="22" height="14" rx="2"/>
+                  <path d="M14 16v-3a6 6 0 0 1 10 0v3"/>
+                </svg>
+              </div>
+              <h3 class="tool-name">Password Strength Analyzer</h3>
+            </div>
+            <p class="tool-desc">
+              Estimate entropy, detect common patterns and guess-crack time for any password.
+            </p>
+            <button class="tool-btn" onclick="openTool('password-strength.html')">
+              Open Tool
+            </button>
+          </article>
+
+        </div>
+      </section>
+
+    </section>
+
+    <!-- RIGHT: info panel -->
+    <aside class="info-panel">
+      <div class="info-card">
+        <h3>About SUDOSOC</h3>
+        <p>
+          SUDOSOC is a client-side cyber defense toolkit focused on practical
+          analysis helpers for SOC analysts, red teamers and security engineers.
+        </p>
+        <p class="info-small">
+          All tools on this page run entirely in the browser — no data leaves
+          your machine unless you explicitly share it.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Usage</h3>
+        <ul class="info-list">
+          <li>Open any tool in a new tab.</li>
+          <li>Paste your sample / header / URL locally.</li>
+          <li>Review the generated report and notes.</li>
+        </ul>
+      </div>
+    </aside>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 SUDOSOC — Cyber Defense Toolkit</p>
+  </footer>
+
 </body>
 </html>
-
-
