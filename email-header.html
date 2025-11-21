@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email Header Analyzer — SUDOSOC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="tools/email-header.js"></script>
+</head>
+<body class="tool-page-body">
+  <div class="tool-page-wrapper">
+
+    <header class="tool-page-header">
+      <div>
+        <div class="tool-page-title">Email Header Analyzer</div>
+        <div class="tool-page-sub">
+          Paste full raw email headers to analyze authentication and routing.
+        </div>
+      </div>
+      <span class="tool-badge">SOC Tool</span>
+    </header>
+
+    <section class="tool-card-main">
+      <label for="eh-input">Raw header</label>
+      <textarea id="eh-input" placeholder="Paste the entire email header here..."></textarea>
+      <p class="helper-text">
+        Export the original message / show original / view source from your mail client and paste it here.
+        Analysis is done fully in your browser.
+      </p>
+
+      <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+        <button onclick="analyzeEmailHeader()">Analyze</button>
+        <button onclick="clearEmailHeader()">Clear</button>
+      </div>
+
+      <div class="result-block" id="eh-summary"></div>
+      <div class="result-block" id="eh-auth"></div>
+      <div class="result-block" id="eh-routing"></div>
+      <div class="result-block" id="eh-raw"></div>
+    </section>
+
+  </div>
+</body>
+</html>
